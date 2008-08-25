@@ -11,7 +11,7 @@ lib/keyword_prospector
 lib/keyword_prospector.rb
 lib/lookup_chain.rb
 lib/match.rb
-lib/profiler.rb
+lib/kp_profiler.rb
 lib/search_and_replace.rb
 lib/state.rb
 script/console
@@ -30,7 +30,7 @@ spec/spec_helper.rb
 spec/state_spec.rb
 tasks/deployment.rake
 tasks/environment.rake
-tasks/profiler.rake
+tasks/profile.rake
 tasks/rspec.rake
 tasks/website.rake
 website/index.html
