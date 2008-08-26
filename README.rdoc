@@ -8,35 +8,51 @@ RDoc:
 
 == DESCRIPTION:
 
-KeywordProspector is a gem for associating keywords in text with arbitrary
-output objects.  It uses an Aho-Corasick tree to provide matching that scales
-linearly with the length of the text, regardless of the number of keywords.
+KeywordProspector was built to provide contextual linking in Ruby
+applications.  It can be used to link keywords with associated URL's
+in text, and has very fast performance even for very high numbers
+of keyword/URL pairs.  Use the KeywordLinker object for linking
+keywords in text.
+
+KeywordProspector can also be used to associate keywords in text
+with arbitrary output objects, so it has been used for associating
+geocode objects with neighborhood names to determine map locations
+to associate with text, and could even be used to implement profanity
+filters or basic keyword-based text classifiers.  Use the
+KeywordProspector object for associating arbitrary objects with
+keywords.
+
+KeywordProspector has an implementation of the Aho-Corasick algorithm
+as its core engine, which enables it to match keywords in O(n) time,
+where n is the length of the text being matched, regardless of the
+number of keywords being matched.
 
 == FEATURES:
 
 The core KeywordProspector engine has the following properties:
-* Once a tree is built, matching against the tree is o(n) where n is the length
-  of your text, regardless of how mane keywords you have in the tree.
-* Arbitrary output objects can be associated with any keyword or set of
-  keywords.
+* Once a tree is built, matching against the tree is O(n) where n
+  is the length of your text, regardless of how mane keywords you
+  have in the tree.
+* Arbitrary output objects can be associated with any keyword or
+  set of keywords.
 
 KeywordLinker can be used to create links to designated url's:
 * You can specify a single keyword to associate with a url.
 * You can specify an array of keywords to associate with a url.
-* Each keyword or group of keywords will be linked only once to the url
-  provided.
+* Each keyword or group of keywords will be linked only once to the
+  url provided.
 * Hyperlinks are not created within existing hyperlinks.
-* Hyperlinks are not generated anywhere they would be illegal in HTML, such as
-  within attribute values.
+* Hyperlinks are not generated anywhere they would be illegal in
+  HTML, such as within attribute values.
 
-== SYNOPSIS:
+== USAGE:
 
-Note: Because I want my README file to work on github, I've replaced all the
-less than and greater than signs with '[' and ']' respectively.  KeywordLinker
-does produce valid HTML.
+Note: Because I want my README file to work on github, I've replaced
+all the less than and greater than signs with '[' and ']' respectively.
+KeywordLinker does produce valid HTML.
 
-Use KeywordLinker to create links in HTML text.  KeywordLinker will link only
-the first alternative that appears in text:
+Use KeywordLinker to create links in HTML text.  KeywordLinker will
+link only the first alternative that appears in text:
 
   require 'keyword_linker'
 
@@ -77,8 +93,9 @@ Alf Mikula [amikula@gmail.com]
 
 == ACKNOWLEDGEMENTS:
 
-Thanks to David Johnson for telling me about the Aho-Corasick algorithm, and
-for providing the original Aho-Corasick Ruby implementation.
+Thanks to David Johnson for telling me about the Aho-Corasick
+algorithm, and for providing the original Aho-Corasick Ruby
+implementation.
 
 == LICENSE:
 
@@ -91,8 +108,8 @@ a copy of this software and associated documentation files (the
 'Software'), to deal in the Software without restriction, including
 without limitation the rights to use, copy, modify, merge, publish,
 distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+permit persons to whom the Software is furnished to do so, subject
+to the following conditions:
 
 The above copyright notice and this permission notice shall be
 included in all copies or substantial portions of the Software.
@@ -100,7 +117,7 @@ included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
