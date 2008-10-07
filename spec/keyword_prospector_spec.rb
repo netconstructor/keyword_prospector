@@ -229,4 +229,50 @@ describe KeywordProspector do
       end
     end
   end
+
+  describe :to_hash do
+    it "should return a hash showing the associations represented" do
+      kp = KeywordProspector.new()
+
+      kp.add('foo', :foo)
+      kp.add('bar', :bar)
+      kp.add('baz', :baz)
+
+      kp.construct_fail
+
+      kp.to_hash.should == {'foo' => :foo, 'bar' => :bar, 'baz' => :baz}
+    end
+  end
+
+  describe :each_pair do
+    it "should call the block, passing in each pair" do
+      kp = KeywordProspector.new()
+
+      kp.add('foo', :foo)
+      kp.add('bar', :bar)
+      kp.add('baz', :baz)
+
+      kp.construct_fail
+
+      target = mock(Object)
+      target.should_receive(:execute).with('foo', :foo)
+      target.should_receive(:execute).with('bar', :bar)
+      target.should_receive(:execute).with('baz', :baz)
+
+      kp.each_pair do |x,y|
+        target.execute(x, y)
+      end
+    end
+  end
+
+  describe :inspect do
+    it "should return the results of to_hash.inspect" do
+      kp = KeywordProspector.new()
+      hash = mock(Object)
+      hash.should_receive(:inspect).and_return(:hash_inspect)
+      kp.should_receive(:to_hash).and_return(hash)
+
+      kp.inspect.should == :hash_inspect
+    end
+  end
 end

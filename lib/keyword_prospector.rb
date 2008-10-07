@@ -135,6 +135,28 @@ class KeywordProspector
     end
   end
   
+  def to_hash
+    retval = {}
+
+    each_pair do |x,y|
+      retval[x] = y
+    end
+
+    retval
+  end
+
+  def each_pair(&block)
+    @start.keys.each do |key|
+      next if @start[key] == @start
+
+      @start[key].walk([key.chr], &block)
+    end
+  end
+
+  def inspect
+    to_hash.inspect
+  end
+
   private
   WORD_CHARS=[?a..?z, ?A..?Z, ?0..?9, ?_]
 

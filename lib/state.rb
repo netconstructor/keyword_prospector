@@ -82,4 +82,16 @@ class State
 
     next_state
   end
+
+  def walk(array, &block)
+    block.call(array.join(''), output) if output
+
+    self.keys.each do |key|
+      array << key.chr
+
+      self[key].walk(array, &block)
+
+      array.pop
+    end
+  end
 end
